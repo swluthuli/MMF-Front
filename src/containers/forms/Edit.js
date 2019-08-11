@@ -26,7 +26,8 @@ class Edit extends Component {
             email: '',
             contact_number: '',
             identity: '',
-            submitted: false
+            submitted: false,
+            searchText : ''
 
         };
 
@@ -68,6 +69,7 @@ class Edit extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.search = this.search.bind(this);
+        this.findArrayElementByTitle = this.findArrayElementByTitle.bind(this);
     }
     handleChange(e) {
         const { name, value } = e.target;
@@ -89,15 +91,34 @@ class Edit extends Component {
       }
       search(e){
           e.preventDefault();
-          console.log('result');
+const fitlered = this.findArrayElementByTitle(this.props.users.users, this.state.searchText);
+if(fitlered){
+this.setState({
+    
+    title: fitlered.title,
+    firstName : fitlered.firstName,
+    lastName: fitlered.lastName,
+    email: fitlered.email,
+    contact_number: fitlered.contact,
+    identity: '',
+
+})
+}
+          console.log(fitlered);
+      }
+
+       findArrayElementByTitle(array, contact) {
+        return array.find((element) => {
+            
+          return element.contact.toString() === contact;
+        })
       }
 
 
 
 
-
     render() {
-        const { car_name, year, fuel, pickup, PickDate, returnLocation, returnDate, title, firstName, lastName, email, contact_number, identity ,submitted } = this.state;
+        const { car_name, year, fuel, pickup, PickDate, returnLocation, returnDate, title, firstName, lastName, email, contact_number, identity ,submitted , searchText } = this.state;
 const style = StyleSheet.create({
     page:{
         flexDirection: "column"
@@ -110,7 +131,12 @@ const style = StyleSheet.create({
             <Card>
                 <CardHeader>Book    <Form inline className="float-right">
                 <InputGroup>
-        <Input placeholder="search" />
+        <Input 
+        name="searchText" 
+        type = "text"
+        value = {searchText}
+        onChange ={this.handleChange}
+        placeholder="search" />
         <InputGroupAddon addonType="append" >
           <InputGroupText ><i className="fa fa-search" onClick={this.search}></i></InputGroupText>
         </InputGroupAddon>

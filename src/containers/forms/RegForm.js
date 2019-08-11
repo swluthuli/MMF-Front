@@ -16,6 +16,7 @@ class RegForm extends React.Component {
       contact: '',
       birth_date: '',
       driversLicense: '',
+      identity:  '',
       address: '',
       city: '',
       country: '',
@@ -35,9 +36,9 @@ class RegForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const { firstName, lastName, email, contact, birth_date,gender, driversLicense, address, city, country } = this.state;
+    const { firstName, lastName, email, contact, birth_date,gender, driversLicense,identity, address, city, country } = this.state;
     const { dispatch } = this.props;
-    const user = { firstName, lastName, email, contact, birth_date,gender, driversLicense, address, city, country }
+    const user = { firstName, lastName, email, contact, birth_date,gender, driversLicense,identity, address, city, country }
     if (user) {
       dispatch(userActions.register(user));
       console.log(user);
@@ -48,7 +49,7 @@ class RegForm extends React.Component {
 
   render() {
 
-    const { firstName, lastName, email, contact, birth_date,gender, driversLicense, address, city, country, submitted } = this.state;
+    const { firstName, lastName, email, contact, birth_date,gender, driversLicense,identity, address, city, country, submitted } = this.state;
 
     return (
       <Card>
@@ -137,6 +138,17 @@ class RegForm extends React.Component {
                   name="driversLicense"
                   id="driversLicense"
                   value={driversLicense}
+                  onChange={this.handleChange} />
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="identity" sm={2}>ID Number</Label>
+              <Col sm={10}>
+                <Input
+                  type="text"
+                  name="identity"
+                  id="identity"
+                  value={identity}
                   onChange={this.handleChange} />
               </Col>
             </FormGroup>
