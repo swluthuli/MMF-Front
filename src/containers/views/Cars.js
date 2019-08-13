@@ -13,9 +13,11 @@ class Cars extends React.Component {
   }
 
   tabRow() {
+    if(this.state.cars){
     return this.state.cars.map(function (object, i) {
       return <CarsRow obj={object} key={i} />;
     });
+  }
   }
   render() {
     return (

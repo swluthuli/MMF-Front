@@ -42,8 +42,8 @@ function update(car) {
             .then(
                 car => { 
                     dispatch(success());
-                    dispatch(alertActions.success('Registration successful'));
-                    toastr.success('booking was successful');
+                    dispatch(alertActions.success('car details was updated'));
+                    toastr.success('car details was updated');
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -85,7 +85,8 @@ function _delete(id) {
 
         carService.delete(id)
             .then(
-                car => dispatch(success(id)),
+                id => {dispatch(success(id))
+                toastr.error("user deleted")},
                 error => dispatch(failure(id, error.toString()))
             );
     };

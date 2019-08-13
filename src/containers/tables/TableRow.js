@@ -2,10 +2,25 @@ import React, { Component } from 'react';
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import './tables.css';
 import { Row, Col } from 'reactstrap';
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { userActions } from '../../_actions/user.action';
 class TableRow extends Component {
+  constructor(props) {
+    super(props);
+
+
+
+    this.deleteuser = this.deleteuser.bind(this);
+}
+
+  deleteuser(e, id){
+    e.preventDefault();
+    this.props.deleteUser(id);
+  }
+
+
   render() {
     return (
       <tr>
@@ -26,7 +41,7 @@ class TableRow extends Component {
             value={{ size: '25px', className: "bookIcons" }}>
             <div>
               <Row form>
-                <Col md={6}> <FaRegTrashAlt color='red' /></Col>
+                <Col md={6}> <FaRegTrashAlt color='red' onClick={(e) => this.deleteuser(e, this.props.obj._id)} /></Col>
                 <Col md={6}> <Link to={"/useredit/"+ this.props.obj._id}><FaRegEdit color='orange' /></Link></Col>
               </Row>
             </div>
@@ -35,6 +50,10 @@ class TableRow extends Component {
       </tr>
     );
   }
-}
-
-export default TableRow;
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteUser: id => dispatch(userActions.delete(id))
+  }
+};
+export default connect(null,mapDispatchToProps)(TableRow);

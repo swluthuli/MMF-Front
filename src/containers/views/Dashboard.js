@@ -216,7 +216,7 @@ class Dashboard extends Component {
   async componentDidMount(){
     let user = JSON.parse(localStorage.getItem('user'));
     let Authorization = 'Bearer ' + user.data.token;
-     axios.get(`http://localhost:4000/users`, {
+     axios.get(`http://localhost:8080/users`, {
       headers:{Authorization: Authorization }}).then(res=> {
         const Busers = res.data;
       
@@ -225,7 +225,7 @@ class Dashboard extends Component {
       });
       this.setState({ cars : this.props.cars.items});
       this.setState({ bookings : this.props.bookings.items});
-      this.setState({ customers : this.props.users.users});
+      this.setState({ customers : this.props.users.items});
   }
 
 

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { bookingActions } from '../../_actions/booking.action';
 import { connect } from 'react-redux';
 import {Document, Page , Text , View, StyleSheet, PDFViewer} from '@react-pdf/renderer';
+import { toastr } from 'react-redux-toastr'
 class Edit extends Component {
 
     constructor(props) {
@@ -38,7 +39,7 @@ class Edit extends Component {
         let Authorization = 'Bearer ' + user.data.token;
         const { id } = this.props.match.params
         console.log({ id })
-        axios.get(`http://localhost:4000/cars/${id}`, {
+        axios.get(`http://localhost:8080/cars/${id}`, {
             headers: { Authorization: Authorization }
         }).then(res => {
             const car = res.data;
@@ -100,17 +101,19 @@ this.setState({
     lastName: fitlered.lastName,
     email: fitlered.email,
     contact_number: fitlered.contact,
-    identity: '',
+    identity: fitlered.identity,
 
 })
+}else{
+    toastr.warning('User does not exist')
 }
           console.log(fitlered);
       }
 
-       findArrayElementByTitle(array, contact) {
+       findArrayElementByTitle(array, identity) {
         return array.find((element) => {
             
-          return element.contact.toString() === contact;
+          return element.identity.toString() === identity;
         })
       }
 

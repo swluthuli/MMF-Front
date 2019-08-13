@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
 import BookForm from '../forms/BookForm';
 import { Row} from 'reactstrap';
-import axios from 'axios';
+import { connect } from 'react-redux';
 class Book extends Component {
     state = {
         cars: []
       }
 
       async componentDidMount(){
-        let user = JSON.parse(localStorage.getItem('user'));
-        let Authorization = 'Bearer ' + user.data.token;
-         axios.get(`http://localhost:4000/cars`, {
-          headers:{Authorization: Authorization }}).then(res=> {
-            const cars = res.data;
-          
-            this.setState({cars});
-          
-          })
+        this.setState({cars : this.props.cars.items})
       }
       tabRow(){
         return this.state.cars.map(function(object, i){
@@ -42,5 +34,11 @@ class Book extends Component {
         );
     }
 }
+function mapStateToProps({ cars }) {
+  return {
+      cars
+  }
+};
 
-export default Book;
+
+export default connect(mapStateToProps)(Book);

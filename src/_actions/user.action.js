@@ -118,11 +118,11 @@ function update(user) {
         dispatch(request(user));
 
         userService.update(user)
-            .then(
-                user => { 
+            .then(user => { 
                     dispatch(success());
-                    dispatch(alertActions.success('Registration successful'));
-                    toastr.success('booking was successful');
+                    dispatch(alertActions.success('user was successfully updated'));
+                    toastr.success('user was successfully updated');
+
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -179,7 +179,7 @@ function _delete(id) {
 
         userService.delete(id)
             .then(
-                user => dispatch(success(id)),
+                id => dispatch(success(id)),
                 error => dispatch(failure(id, error.toString()))
             );
     };

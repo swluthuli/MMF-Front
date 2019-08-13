@@ -8,7 +8,6 @@ import Login from './Login';
 import ReduxToastr from 'react-redux-toastr';
 import { userActions } from '../_actions/user.action';
 import { carActions } from '../_actions/car.action'
-import { log } from 'util';
 import { bookingActions } from '../_actions/booking.action';
 class App extends Component {
 
@@ -64,8 +63,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getAllUsers: () => dispatch(userActions.getAll()),
     getAllCars:() => dispatch(carActions.getAll()),
-clear : () => dispatch(alertActions.clear()),
-getAllBookings :() => dispatch(bookingActions.getAll())
+getAllBookings :() => dispatch(bookingActions.getAll()),
+clear : () => dispatch(alertActions.clear())
   }
 };
 

@@ -11,12 +11,14 @@ state ={
 }
  
 async componentDidMount() {
-  this.setState({users : this.props.users.users})
+  this.setState({users : this.props.users.items})
 }
   tabRow(){
+    if(this.state.users){
     return this.state.users.map(function(users, i){
         return <TableRow obj={users} key={i} />;
     });
+  }
   }
 
    

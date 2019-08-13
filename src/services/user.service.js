@@ -17,7 +17,7 @@ export const userService = {
 
 function login(username, password) {
   
-    return axios.post(`http://localhost:4000/users/authenticate`, { username, password })
+    return axios.post(`http://localhost:8080/users/authenticate`, { username, password })
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(user));
@@ -32,14 +32,14 @@ function logout() {
 }
 
 function getAll() {
-    return axios.get(`http://localhost:4000/customers`, {headers:  authHeader()})
+    return axios.get(`http://localhost:8080/customers`, {headers:  authHeader()})
         .then(users => {
             return users.data;
         });
 }
 
 function getAllCars() {
-    return axios.get(`http://localhost:4000/cars`, {headers: authHeader() })
+    return axios.get(`http://localhost:8080/cars`, {headers: authHeader() })
         .then(cars => {
             return cars.data;
         });
@@ -55,32 +55,28 @@ function getById(id) {
 }
 
 function register(user) {
-    return axios.post(`http://localhost:4000/customers/register`, user,{ headers:  authHeader()});
+    return axios.post(`http://localhost:8080/customers/register`, user,{ headers:  authHeader()});
 
 }
 
 function addcar(user) {
-    return axios.post(`http://localhost:4000/cars/register`,user ,{ headers:  authHeader() });
+    return axios.post(`http://localhost:8080/cars/register`,user ,{ headers:  authHeader() });
 
 }
 
 function book(user) {
-    return axios.post(`http://localhost:4000/bookings/register`,user ,{ headers:  authHeader() });
+    return axios.post(`http://localhost:8080/bookings/register`,user ,{ headers:  authHeader() });
 
 }
 
 function update(user) {
-    return axios.put(`http://localhost:4000/customers/${user.userid}`,user, { headers:  authHeader() });
+    return axios.put(`http://localhost:8080/customers/${user.userid}`,user, { headers:  authHeader() });
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
-    const requestOptions = {
-        method: 'DELETE',
-        headers: authHeader()
-    };
-
-    return fetch(`http://localhost:8080/users/${id}`, requestOptions).then(handleResponse);
+    return axios.delete(`http://localhost:8080/customers/${id}`, { headers:  authHeader() });
+    
 }
 
 function handleResponse(response) {

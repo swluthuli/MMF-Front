@@ -45,6 +45,10 @@ const useredit = Loadable({
   loader: () => import('../containers/tables/Useredit'),
   loading: Loading,
 });
+const caredit = Loadable({
+  loader: () => import('../containers/tables/Caredit'),
+  loading: Loading,
+});
 const routes = [
   { path: '/', name: '', component: Home, exact: true },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
@@ -55,7 +59,8 @@ const routes = [
   { path: '/cars', name: 'cars', component: cars },
   { path: '/addcars', name: 'addcars', component: addcars },
   { path: '/edit/:id', name: 'edit', component: edit },
-  { path: '/useredit/:id', name: 'useredit', component: useredit }
+  { path: '/useredit/:id', name: 'useredit', component: useredit },
+  { path: '/caredit/:id', name: 'caredit', component: caredit }
 ];
 
 export default routes;

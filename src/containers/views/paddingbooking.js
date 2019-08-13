@@ -11,7 +11,7 @@ class paddingbooking extends Component {
   async componentDidMount(){
     let user = JSON.parse(localStorage.getItem('user'));
     let Authorization = 'Bearer ' + user.data.token;
-     axios.get(`http://localhost:4000/bookings`, {
+     axios.get(`http://localhost:8080/bookings`, {
       headers:{Authorization: Authorization }}).then(res=> {
         const bookings = res.data;
       

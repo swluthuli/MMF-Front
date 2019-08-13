@@ -11,7 +11,7 @@ export const bookingService = {
 
 
 function getAll() {
-    return axios.get(`http://localhost:4000/bookings`, {headers:  authHeader()})
+    return axios.get(`http://localhost:8080/bookings`, {headers:  authHeader()})
         .then(bookings => {
             return bookings.data;
         });
@@ -28,12 +28,12 @@ function getById(id) {
 }
 
 function register(booking) {
-    return axios.post(`http://localhost:4000/bookings/register`, booking,{headers:  authHeader()});
+    return axios.post(`http://localhost:8080/bookings/register`, booking,{headers:  authHeader()});
 
 }
 
 function update(booking) {
-    return axios.put(`http://localhost:4000/bookings/${booking.bookingid}`,booking, {headers:  authHeader()});
+    return axios.put(`http://localhost:8080/bookings/${booking.bookingid}`,booking, {headers:  authHeader()});
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript

@@ -32,7 +32,7 @@ class Useredit extends Component {
         let Authorization = 'Bearer ' + user.data.token;
         const { id } = this.props.match.params
         console.log( id )
-        axios.get(`http://localhost:4000/customers/${id}`, {
+        axios.get(`http://localhost:8080/customers/${id}`, {
             headers: { Authorization: Authorization }
         }).then(res => {
             const user = res.data;
