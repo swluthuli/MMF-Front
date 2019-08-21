@@ -17,7 +17,7 @@ export const userService = {
 
 function login(username, password) {
   
-    return axios.post(`http://localhost:8080/users/authenticate`, { username, password })
+    return axios.post(`http://localhost:8080/authenticate`, { username, password })
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(user));
@@ -51,7 +51,7 @@ function getById(id) {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:8080/users/${id}`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:8080/${id}`, requestOptions).then(handleResponse);
 }
 
 function register(user) {
